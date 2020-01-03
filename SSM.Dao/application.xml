@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd">
+	
+	<!-- 扫描数据库配置文件 -->
+	<context:property-placeholder location="classpath:db.properties"/>
+	
+	<!-- 注解方式配置bean -->
+	<context:component-scan base-package="com.yr"></context:component-scan>
+	
+	<!-- 链接池及数据库链接 -->
+	 <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">  
+            <property name="user" value="${user}"></property>  
+            <property name="password" value="${password}"></property>  
+            <property name="driverClass" value="${driverClass}"></property>  
+            <property name="jdbcUrl" value="${jdbcUrl}"></property>  
+     </bean>
+	
+	<!-- 配置 Spirng 的 JdbcTemplate  这是一个数据操作的模板 -->
+	<bean id="jdbcTemplate" 
+		class="org.springframework.jdbc.core.JdbcTemplate">
+		<property name="dataSource" ref="dataSource"></property>
+	</bean>
+
+	<!-- 使AspjectJ注解起作用：自动为匹配的类生成代理对象 -->
+	<aop:aspectj-autoproxy></aop:aspectj-autoproxy>
+</beans>

@@ -1,0 +1,50 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>SSM.Controller</groupId>
+	<artifactId>SSM.Controller</artifactId>
+	<version>${project.ssm.controller.release.version}</version>
+	<packaging>jar</packaging>
+
+	<name>SSM.Controller</name>
+	<url>http://maven.apache.org</url>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+
+
+	<!-- 所有子模块都继承最父类pom.xml -->
+	<parent>
+		<groupId>SSM</groupId>
+		<artifactId>SSM</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+		<relativePath>../SSM/pom.xml</relativePath>
+	</parent>
+
+
+	<dependencies>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>3.8.1</version>
+			<scope>test</scope>
+		</dependency>
+
+		<!-- 引入 SSM.Entry -->
+		<dependency>
+			<groupId>SSM.Entry</groupId>
+			<artifactId>SSM.Entry</artifactId>
+			<version>${project.ssm.entry.release.version}</version>
+		</dependency>
+
+		<!--引入SSM.Service -->
+		<dependency>
+			<groupId>SSM.Service</groupId>
+			<artifactId>SSM.Service</artifactId>
+			<version>${project.ssm.service.release.version}</version>
+		</dependency>
+	</dependencies>
+</project>
